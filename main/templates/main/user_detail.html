@@ -1,0 +1,74 @@
+{% extends "main/base.html" %}
+
+{% block title %}Профиль пользователя{% endblock %}
+
+{% block content %}
+<div class="user-profile">
+    <div class="profile-photo">
+        <img src="{{ user.photo_url }}" alt="Фото {{ user.first_name }} {{ user.last_name }}">
+    </div>
+    <div class="profile-info">
+        <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+        <p><strong>Пол:</strong> {{ user.get_gender_display }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Телефон:</strong> {{ user.phone_number }}</p>
+        <p><strong>Адрес:</strong></p>
+            <ul>
+                <li>Страна: {{ user.country }}</li>
+                <li>Город: {{ user.city }}</li>
+                <li>Улица: {{ user.street_name }}</li>
+                <li>Номер дома: {{ user.street_number }}</li>
+            </ul>
+    </div>
+</div>
+
+<style>
+.user-profile {
+    display: flex;
+    gap: 24px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    max-width: 700px;
+    margin: 30px auto;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.profile-photo img {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.profile-info {
+    flex: 1;
+}
+
+.profile-info h2 {
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-size: 26px;
+}
+
+.profile-info p {
+    margin: 8px 0;
+    font-size: 16px;
+}
+
+.profile-info ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 4px;
+}
+
+.profile-info ul li {
+    margin: 4px 0;
+    font-size: 16px;
+}
+</style>
+{% endblock %}

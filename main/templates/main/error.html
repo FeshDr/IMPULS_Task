@@ -1,0 +1,11 @@
+{% extends "main/base.html" %}
+
+{% block title %}Ошибка{% endblock %}
+
+{% block content %}
+<div class="error-message" style="max-width: 600px; margin: 50px auto; padding: 20px; border: 1px solid #f44336; background-color: #ffebee; border-radius: 8px; color: #b71c1c; font-family: Arial, sans-serif;">
+    <h2>Ошибка</h2>
+    <p>{{ message }}</p>
+    <a href="{% url 'homepage' %}" style="color: #b71c1c; text-decoration: underline;">Вернуться на главную</a>
+</div>
+{% endblock %}
