@@ -5,11 +5,16 @@ ENV PYTHONUNBUFFERED 1
 
 WORKDIR /app
 
+RUN apt-get update && apt-get install -y netcat-openbsd && rm -rf /var/lib/apt/lists/*
+
 COPY requirements.txt .
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
 COPY . .
 
-RUN python3 manage.py migrate
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
-CMD ["gunicorn", "myproject.wsgi:application", "--bind", "0.0.0.0:8000"]
+ENTRYPOINT ["/entrypoint.sh"]
+
+CMD ["gunicorn", "impulsProject.wsgi:application", "--bind", "0.0.0.0:8000"]
